@@ -1,0 +1,44 @@
+<div mat-dialog-content class="dialog-container">
+    <div class="form__wrapper">
+        <form [formGroup]="contactForm" class="contact__form">
+            <mat-form-field appearance="fill" class="flex-grow">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="contactForm.controls['name'].hasError('required')">
+                    Name is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="flex-grow">
+                <mat-label>Phone</mat-label>
+                <input matInput type="text" formControlName="phone">
+                <mat-error *ngIf="contactForm.controls['phone'].hasError('required') ">
+                    Please input a valid phone number
+                </mat-error>
+                <mat-error *ngIf="contactForm.controls['phone'].hasError('pattern') ">
+                    Please input numbers only
+                </mat-error>
+                <mat-error *ngIf="contactForm.controls['phone'].hasError('minlength')">
+                    At least 5 numbers are required.
+                </mat-error>
+                <mat-error *ngIf="contactForm.controls['phone'].hasError('maxlength')">
+                    At max 10 numbers only
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="flex-grow">
+                <mat-label>Address</mat-label>
+                <textarea placeholder="Key in your address here" matInput formControlName="address"></textarea>
+            </mat-form-field>
+        </form>
+    </div>
+    <div>
+      <div mat-dialog-actions class="button-container">
+        <div *ngIf="this.editMode" class="button__wrapper">
+            <button mat-button color="primary" [disabled]= "!isFormValid()" (click)="onEditClick()">Update</button>
+            <button mat-button color="warn" (click)="onDeleteClick()">Delete</button>
+        </div>
+        <div *ngIf="!this.editMode" class="button__wrapper">
+            <button mat-button (click)="onCreateClick()" [disabled]= "!isFormValid()">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>

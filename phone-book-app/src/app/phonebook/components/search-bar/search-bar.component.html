@@ -1,0 +1,13 @@
+<div #searchElement class="person-search">
+    <div class="search-bar">
+      <form class="search-bar-form" [formGroup]="searchForm" (ngSubmit)="search($event)">
+        <mat-form-field>
+          <input matInput type="text" formControlName="search" (focus)="onFocus()" placeholder="Search" />
+        </mat-form-field>
+      </form>
+    </div>
+    <div *ngIf="searchResults.length > 0 && focused" class="search-results">
+        <ng-content></ng-content>
+    </div>
+  </div>
+<div class="person-search-placeholder"></div>
