@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContactOverviewComponent } from './phonebook/contact-overview.component';
 
 const routes: Routes = [
-  // {
-  //   path : "",
-  //   loadChildren: () => import('./phonebook/phonebook.module').then(m => m.PhonebookModule)
-  // },
   {
-    path: "list",
-    component: ContactOverviewComponent,
+    path : "**",
+    loadChildren: () => import('./phonebook/phonebook.module').then(m => m.PhonebookModule)
   },
+  // {
+  //   path: "list",
+  //   component: ContactOverviewComponent,
+  // },
 
 ];
 
